@@ -1,0 +1,24 @@
+
+    <form #monForm=ngForm (ngSubmit)=addSeance() class="alert alert-secondary" style="width: 550px;margin-left: 500px; margin-top: 30px; ">
+        <h2 style= "margin-left: 150px; color:rgb(5, 202, 252)">Ajoutez Séance</h2>
+    <div>
+        <label style="width: 150px; margin-top: 30px; "> Duree :</label> <input type=text name=duree [(ngModel)]="frmS.duree" required #duree="ngModel">
+    </div>
+    <div [hidden]="duree.valid || duree.pristine">
+    Le nom est obligatoire
+    </div>
+  
+    <div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label  style="width: 150px;  margin-top: 30px;" for="inputGroupSelect01">Salle :</label>
+            </div>
+            <select class="custom-select form-control" style="width: 150px; margin-top: 30px; " id="inputGroupSelect01"  name="salle" #salle="ngModel" [(ngModel)]="frmS.salle" >
+              <option *ngFor="let g of listSa" [ngValue]='g'>{{g.nom}}</option>
+            </select>
+          </div>    
+          <button class="btn btn-info" style=" margin-left: 350px; width: 100px;" [disabled]=!monForm.valid>
+            Ajouter
+            </button>
+    </div>
+    </form>

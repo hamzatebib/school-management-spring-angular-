@@ -1,0 +1,72 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"></h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+       
+      <form #updateForm=ngForm>
+        <div class="form-group">
+          <label for="dateOfBirth">Nom Universite</label>
+          <div class="input-group">
+            <input id="dateOfBirth" class="form-control" #nomUnv="ngModel" [(ngModel)]="universite.nomUnv"  placeholder="{{currentUniversite.nomUnv}}" name="nomUnv"  required>
+            <div class="input-group-append">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="dateOfBirth">Adresse</label>
+            <div class="input-group">
+              <input id="dateOfBirth" class="form-control" #adresse="ngModel" [(ngModel)]="universite.adresse"  placeholder="{{currentUniversite.adresse}}" name="adresse"  required>
+              <div class="input-group-append">
+              </div>
+            </div>
+          </div>
+        <div class="form-group">
+            <label for="dateOfBirth">Departement</label>
+       
+        <div>
+        <select class="custom-select form-control" id="inputGroupSelect01"  name="departement" #departement="ngModel" [(ngModel)]="universite.departement" >
+          <option *ngFor="let g of listDep" [ngValue]='g'>{{g.codeDep}}</option>
+        </select>
+      </div>  </div>
+          
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" [disabled]="!updateForm.valid" class="btn btn-outline-dark" (click)="modal.close('Save click')" (click)="update()">Confirmer</button>
+    </div>
+  </ng-template>
+
+
+<button class="btn btn-primary" style="margin-left:781px; margin-top:30px;" routerLink="/ajouterUniversite"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter Universite</button>
+
+
+<table class="table" style=' margin-top:30px; width:800px; margin-left:150px;'>
+    <thead class="table-primary" style="color:#427c80; ">
+    <tr>
+        <th>Identifiant</th>
+        <th>Nom Universite</th>
+        <th>Adresse</th>
+        <th>Departement</th>
+        <th></th>
+        <th></th>
+    </tr></thead>
+    <tbody>
+    <tr *ngFor="let elt of listU; let i = index" [class.active]="i == currentindex">
+        <td>{{ elt.codeUnv }}</td>
+        <td>{{ elt.nomUnv }}</td>
+        <td>{{ elt.adresse }}</td>
+        <td *ngIf="elt.departement != null">{{elt.departement.nomDep}}</td>
+        <td><button class="btn btn-outline-danger text-danger" (click)="currentuniversite(elt ,i)" (click)="delet()"><i class="fa fa-times" aria-hidden="true"></i>Supprimer</button>
+        </td>
+        <td>
+            <button class="btn btn-outline-primary" (click)="open(content)" (click)="currentuniversite(elt,i)"><i class="fa fa-magic" aria-hidden="true"></i>
+                Modifier</button>
+        </td>
+    </tr></tbody>
+</table>
+
+

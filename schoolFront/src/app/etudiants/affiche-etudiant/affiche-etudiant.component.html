@@ -1,0 +1,55 @@
+<ng-template #content let-modal>
+  
+     
+    <form #updateForm=ngForm>
+      <div class="form-group">
+        <label for="dateOfBirth">Nom</label>
+        <div class="input-group">
+          <input id="dateOfBirth" class="form-control" #nom="ngModel" [(ngModel)]="etudiant.nom"  placeholder="{{currentEtudiant.nom}}" name="nom"  required>
+          <div class="input-group-append">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+          <label for="dateOfBirth">Groupe</label>
+     
+      <div>
+      <select class="custom-select form-control" id="inputGroupSelect01"  name="groupes" #groupes="ngModel" [(ngModel)]="etudiant.groupes" >
+        <option *ngFor="let g of listGrp" [ngValue]='g'>{{g.nom}}</option>
+      </select>
+    </div>  </div>
+        
+    </form>
+  
+  <div class="modal-footer">
+    <button type="button" [disabled]="!updateForm.valid" class="btn btn-outline-dark" (click)="modal.close('Save click')" (click)="update()">Confirmer</button>
+  </div>
+</ng-template>
+
+
+
+<table class="table" border="2">
+  <tr>
+    <th>ID</th>
+    <th>Nom</th>
+    <th>Groupe</th>
+      
+      
+      
+      <th>Suppression</th>
+      <th>Modification</th>
+     
+  </tr>
+  <tr *ngFor="let elt of listEt; let i = index" [class.active]="i == currentindex">
+    <td>{{ elt.matricule }}</td>
+    <td>{{ elt.nom }}</td>
+    <td *ngIf="elt.groupes != null">{{elt.groupes.nom}}</td>
+    <td><button class="btn btn-danger" (click)="currentetudiant(elt ,i)" (click)="delet()">Supprimer</button>
+    </td>
+    <td>
+        <button class="btn btn-danger" (click)="open(content)" (click)="currentetudiant(elt,i)">
+            Modifier</button>
+    </td>
+</tr>
+</table>
+<button class="btn btn-primary"  routerLink="/ajouterEtudiant">Ajouter Etudiant</button>

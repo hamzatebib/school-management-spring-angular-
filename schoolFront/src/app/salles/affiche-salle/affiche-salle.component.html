@@ -1,0 +1,46 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"></h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+       
+      <form #updateForm=ngForm>
+        <div class="form-group">
+          <label for="dateOfBirth">Nom</label>
+          <div class="input-group">
+            <input id="dateOfBirth" class="form-control" #nom="ngModel" [(ngModel)]="salle.nom" Value='currentSalle.nom' placeholder="{{currentSalle.nom}}" name="nom"  required>
+            <div class="input-group-append">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="dateOfBirth">Capacite</label>
+            <div class="input-group">
+              <input id="dateOfBirth" class="form-control" #capacite="ngModel" [(ngModel)]="salle.capacite" Value='currentSalle.capacite' placeholder="{{currentSalle.capacite}}" name="capacite"  required>
+              <div class="input-group-append">
+              </div>
+            </div>
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" [disabled]="!updateForm.valid" class="btn btn-outline-dark" (click)="modal.close('Save click')" (click)="update()">Confirmer</button>
+    </div>
+  </ng-template>
+  <button class="btn btn-primary" style="margin-left:817px; margin-top:30px;" routerLink="/ajouterSalle"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter Salle</button>
+  <table class="table" style=' margin-top:30px; width:600px; margin-left:350px;'>
+    <thead class="table-primary" style="color:#427c80; ">
+    <tr><th>Code</th><th>Nom</th><th>capacite</th><th></th><th></th></tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let elt of salles; let i = index" [class.active]="i == currentindex"><td>{{ elt.num }}</td><td>{{ elt.nom }}</td><td>{{ elt.capacite }}</td>
+        <td><button class="btn btn-outline-danger text-danger" (click)="currentsalle(elt ,i)" (click)="delet()"><i class="fa fa-times" aria-hidden="true"></i>Supprimer</button>
+        </td>
+        <td>
+            <button class="btn btn-outline-primary" (click)="open(content)" (click)="currentsalle(elt,i)"><i class="fa fa-magic" aria-hidden="true"></i>
+                Modifier</button>
+        </td></tr></tbody>
+  </table>

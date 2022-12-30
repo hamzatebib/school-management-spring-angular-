@@ -1,0 +1,24 @@
+
+<form #monForm=ngForm (ngSubmit)=addDepartement() class="alert alert-secondary" style="width: 550px;margin-left: 500px; margin-top: 30px; ">
+    <h2 style= "margin-left: 150px; color:rgb(5, 202, 252)">Ajoutez Departement</h2>
+    <div>
+    Nom : <input type=text style="margin-left: 100px;" name=nom [(ngModel)]="Dep.nomDep" required #nom="ngModel">
+    </div>
+    <div [hidden]="nom.valid || nom.pristine">
+    Le nom est obligatoire
+    </div>
+  
+    <div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label  style="width: 150px;  margin-top: 30px;" for="inputGroupSelect01">Enseignant:</label>
+            </div>
+            <select class="custom-select form-control" id="inputGroupSelect01" style="width: 150px; margin-top: 30px; " name="enseignant" #enseignant="ngModel" [(ngModel)]="Dep.enseignant" >
+              <option *ngFor="let g of list" [ngValue]='g'>{{g.nom}}</option>
+            </select>
+          </div>    
+          <button class="btn btn-info" style=" margin-left: 400px;" [disabled]=!monForm.valid>
+            Ajouter
+            </button>
+    </div>
+    </form>

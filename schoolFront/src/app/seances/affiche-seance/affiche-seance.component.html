@@ -1,0 +1,61 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title"></h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+       
+      <form #updateForm=ngForm>
+        <div class="form-group">
+          <label for="dateOfBirth">Duree</label>
+          <div class="input-group">
+            <input id="dateOfBirth" class="form-control" #duree="ngModel" [(ngModel)]="seance.duree"  placeholder="{{currentSeance.duree}}" name="duree"  required>
+            <div class="input-group-append">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="dateOfBirth">Salle</label>
+       
+        <div>
+        <select class="custom-select form-control" id="inputGroupSelect01"  name="salle" #salle="ngModel" [(ngModel)]="seance.salle" >
+          <option *ngFor="let g of listSa" [ngValue]='g'>{{g.nom}}</option>
+        </select>
+      </div>  </div>
+          
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" [disabled]="!updateForm.valid" class="btn btn-outline-dark" (click)="modal.close('Save click')" (click)="update()">Confirmer</button>
+    </div>
+  </ng-template>
+
+
+<button class="btn btn-primary" style="margin-left:805px; margin-top:30px;" routerLink="/ajouterSeance"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter Seance</button>
+
+
+<table class="table" style=' margin-top:30px; width:600px; margin-left:350px;'>
+    <thead class="table-primary" style="color:#427c80; ">
+    <tr>
+        <th>Identifiant</th>
+        <th>Duree</th>
+        <th>Salle</th>
+        <th></th>
+        <th></th>
+    </tr></thead>
+    <tbody>
+    <tr *ngFor="let elt of listS; let i = index" [class.active]="i == currentindex">
+        <td>{{ elt.id }}</td>
+        <td>{{ elt.duree }}</td>
+        <td *ngIf="elt.salle != null">{{elt.salle.nom}}</td>
+        <td><button class="btn btn-outline-danger text-danger" (click)="currentseance(elt ,i)" (click)="delet()"><i class="fa fa-times" aria-hidden="true"></i>Supprimer</button>
+        </td>
+        <td>
+            <button class="btn btn-outline-primary" (click)="open(content)" (click)="currentseance(elt,i)"><i class="fa fa-magic" aria-hidden="true"></i>
+                Modifier</button>
+        </td>
+    </tr></tbody>
+</table>
+

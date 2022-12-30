@@ -1,0 +1,21 @@
+
+
+    <form #monForm=ngForm (ngSubmit)=addGroupe() class="alert alert-secondary" style="width: 550px;margin-left: 500px; margin-top: 30px; ">
+        <h2 style= "margin-left: 150px; color:rgb(5, 202, 252)">Ajoutez Groupe</h2>
+    <div>
+   <label style="margin-left: 20px;margin-top: 30px;"> Nom :</label> <input  type=text  style="margin-left: 20px;margin-top: 30px;" name=nom [(ngModel)]="frm.nom" required #nom="ngModel">
+    </div>
+    <div [hidden]="nom.valid || nom.pristine">
+    Le nom est obligatoire
+    </div>
+    
+    <div>
+        <button class="btn btn-info" style=" margin-left: 400px;margin-top: 20px;" [disabled]=!monForm.valid>
+            Ajouter
+            </button>
+    </div>
+
+
+    </form>
+
+    

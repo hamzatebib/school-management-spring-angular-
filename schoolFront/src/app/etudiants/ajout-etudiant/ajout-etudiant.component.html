@@ -1,0 +1,32 @@
+<form #myform="ngForm" (ngSubmit)="addEtudiant() ">
+
+  <div class="form-group">
+      <label for="etudiant.nomEt">NOM</label>
+      
+      <input type="text" style="width: 300px; margin-top: 30px; " name="name" ngModel class="form-control"  [(ngModel)]="frmEt.nom">
+  </div>
+  
+    <div class="form-group">
+        
+          <label style="width: 150px;  margin-top: 30px;" for="inputGroupSelect01">Groupes</label>
+        
+        <select class="custom-select form-control" style="width: 300px; margin-top: 30px; " id="inputGroupSelect01"  name="groupes" #groupes="ngModel" [(ngModel)]="frmEt.groupes" >
+          <option *ngFor="let g of listGrp" [ngValue]='g'>{{g.nom}}</option>
+        </select>
+    </div>
+ 
+      
+
+    
+
+  
+  
+  
+
+  
+  
+
+  
+  <button class="btn btn-primary">Ajouter</button>
+
+</form> 

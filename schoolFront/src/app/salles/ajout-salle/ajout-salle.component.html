@@ -1,0 +1,26 @@
+
+    <form #monForm=ngForm (ngSubmit)=addSalle() class="alert alert-secondary" style="width: 550px;margin-left: 500px; margin-top: 30px; ">
+        <h2 style= "margin-left: 150px; color:rgb(5, 202, 252)">Ajoutez Salle</h2>
+ 
+    <div>
+        <label style="margin-top: 30px;margin-left: -210px;">Nom :</label><input type=text style="margin-left:40px;margin-top: 30px;" name="nom" [(ngModel)]="frmSa.nom"
+    required #nom="ngModel">
+    </div>
+    <div [hidden]="nom.valid || nom.pristine">
+    Le nom est obligatoire
+    </div>
+    <div>
+        <label style="margin-top: 30px;margin-left: -210px;">Capacité :</label><input type=text style="margin-left: 20px;margin-top: 30px;" name="capacite"   [(ngModel)]="frmSa.capacite"
+        required #capacite="ngModel">
+        </div>
+        <div [hidden]="capacite.valid || capacite.pristine">
+        La capacite est obligatoire
+        </div>
+    <div>
+        
+         <br>   
+         <button class="btn btn-info" style=" margin-left: 350px; width: 100px;" [disabled]=!monForm.valid>
+            Ajouter
+            </button>
+    </div>
+    </form>

@@ -1,0 +1,25 @@
+
+<form #monForm=ngForm (ngSubmit)=addCours() class="alert alert-secondary" style="width: 550px;margin-left: 500px; margin-top: 30px; ">
+   <h2 style= "margin-left: 150px; color:rgb(5, 202, 252)">Ajoutez Cours</h2>
+    <div>
+  <label style="width: 150px; margin-top: 30px; ">  Libelle :</label> 
+  <input type=text name=libelle [(ngModel)]="Cou.libelle" required #libelle="ngModel">
+    </div>
+    <div [hidden]="libelle.valid || libelle.pristine">
+    Le libelle est obligatoire
+    </div>
+  
+    <div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label  style="width: 150px;  margin-top: 30px;" for="inputGroupSelect01"> Seance :</label>
+            </div>
+            <select class="custom-select form-control" id="inputGroupSelect01" style="width: 150px; margin-top: 30px; " name="seance" #seance="ngModel" [(ngModel)]="Cou.seance" >
+              <option *ngFor="let g of listS" [ngValue]='g'>{{g.id}}</option>
+            </select>
+          </div>    
+          <button class="btn btn-info" style=" margin-left: 400px;" [disabled]=!monForm.valid>
+            Ajouter
+            </button>
+    </div>
+    </form>
